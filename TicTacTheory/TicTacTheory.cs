@@ -52,12 +52,39 @@ namespace TicTacTheory
 
     public partial class TicTacTheory : Form
     {
+        // Delegators for safe multithread.
+        delegate void SingleGameDelegate();
+        delegate void MultiGameDelegate();
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public TicTacTheory()
         {
             InitializeComponent();
         }
 
-        // Event handlers for the single game mode.
+        /* Single Game methods. */
+
+        /// <summary>
+        /// Start the single game.
+        /// </summary>
+        private void SingleGameStart()
+        {
+            // TODO
+        }
+
+        /* Game streak methods. */
+
+        /// <summary>
+        /// Start the single game.
+        /// </summary>
+        private void MultiGameStart()
+        {
+            // TODO
+        }
+
+        /* Event handlers for the single game mode. */
 
         /// <summary>
         /// The player click a label to choose a square. This is his next move.
@@ -72,7 +99,8 @@ namespace TicTacTheory
         /// </summary>
         private void singleGameButton_Click(object sender, EventArgs e)
         {
-            // TODO
+            SingleGameDelegate singleGame = new SingleGameDelegate(SingleGameStart);
+            singleGame.BeginInvoke(null, null);
         }
 
         /// <summary>
@@ -80,7 +108,8 @@ namespace TicTacTheory
         /// </summary>
         private void selectOpponentBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            MultiGameDelegate multiGame = new MultiGameDelegate(MultiGameStart);
+            multiGame.BeginInvoke(null, null);
         }
 
         /// <summary>
@@ -91,7 +120,7 @@ namespace TicTacTheory
             // TODO
         }
 
-        // Event handlers for the game streak test mode.
+        /* Event handlers for the game streak test mode. */
 
         /// <summary>
         /// The user click the button to start the tests.
@@ -124,6 +153,6 @@ namespace TicTacTheory
         {
             // TODO
         }
-
+       
     }
 }
