@@ -46,6 +46,7 @@
             this.gameBoardPanel = new System.Windows.Forms.TableLayoutPanel();
             this.testAIPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.progressDraws = new System.Windows.Forms.ProgressBar();
             this.player2Box = new System.Windows.Forms.ComboBox();
             this.explainMultiGameBox = new System.Windows.Forms.RichTextBox();
             this.player1Label = new System.Windows.Forms.Label();
@@ -61,12 +62,21 @@
             this.labelDraws = new System.Windows.Forms.Label();
             this.progressP1 = new System.Windows.Forms.ProgressBar();
             this.progressP2 = new System.Windows.Forms.ProgressBar();
-            this.progressDraws = new System.Windows.Forms.ProgressBar();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.square0 = new System.Windows.Forms.Label();
+            this.square1 = new System.Windows.Forms.Label();
+            this.square2 = new System.Windows.Forms.Label();
+            this.square3 = new System.Windows.Forms.Label();
+            this.square4 = new System.Windows.Forms.Label();
+            this.square5 = new System.Windows.Forms.Label();
+            this.square6 = new System.Windows.Forms.Label();
+            this.square7 = new System.Windows.Forms.Label();
+            this.square8 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.singleGamePage.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.settingGamePanel.SuspendLayout();
+            this.gameBoardPanel.SuspendLayout();
             this.testAIPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfMatchesBox)).BeginInit();
@@ -233,14 +243,23 @@
             this.gameBoardPanel.ColumnCount = 3;
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.gameBoardPanel.Controls.Add(this.square8, 2, 2);
+            this.gameBoardPanel.Controls.Add(this.square7, 1, 2);
+            this.gameBoardPanel.Controls.Add(this.square6, 0, 2);
+            this.gameBoardPanel.Controls.Add(this.square5, 2, 1);
+            this.gameBoardPanel.Controls.Add(this.square4, 1, 1);
+            this.gameBoardPanel.Controls.Add(this.square3, 0, 1);
+            this.gameBoardPanel.Controls.Add(this.square2, 2, 0);
+            this.gameBoardPanel.Controls.Add(this.square1, 1, 0);
+            this.gameBoardPanel.Controls.Add(this.square0, 0, 0);
             this.gameBoardPanel.Location = new System.Drawing.Point(11, 132);
             this.gameBoardPanel.Name = "gameBoardPanel";
             this.gameBoardPanel.RowCount = 3;
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.Size = new System.Drawing.Size(308, 308);
+            this.gameBoardPanel.Size = new System.Drawing.Size(312, 312);
             this.gameBoardPanel.TabIndex = 0;
             // 
             // testAIPage
@@ -294,6 +313,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(318, 525);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // progressDraws
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.progressDraws, 2);
+            this.progressDraws.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressDraws.Location = new System.Drawing.Point(109, 333);
+            this.progressDraws.Name = "progressDraws";
+            this.progressDraws.Size = new System.Drawing.Size(206, 14);
+            this.progressDraws.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.progressDraws.TabIndex = 15;
             // 
             // player2Box
             // 
@@ -471,16 +500,6 @@
             this.progressP2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressP2.TabIndex = 14;
             // 
-            // progressDraws
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.progressDraws, 2);
-            this.progressDraws.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressDraws.Location = new System.Drawing.Point(109, 333);
-            this.progressDraws.Name = "progressDraws";
-            this.progressDraws.Size = new System.Drawing.Size(206, 14);
-            this.progressDraws.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.progressDraws.TabIndex = 15;
-            // 
             // chart
             // 
             this.chart.BackColor = System.Drawing.Color.Transparent;
@@ -501,6 +520,105 @@
             this.chart.TabIndex = 16;
             this.chart.Text = "chart1";
             // 
+            // square0
+            // 
+            this.square0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square0.Enabled = false;
+            this.square0.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square0.Location = new System.Drawing.Point(6, 3);
+            this.square0.Name = "square0";
+            this.square0.Size = new System.Drawing.Size(94, 100);
+            this.square0.TabIndex = 0;
+            this.square0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square1
+            // 
+            this.square1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square1.Enabled = false;
+            this.square1.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square1.Location = new System.Drawing.Point(109, 3);
+            this.square1.Name = "square1";
+            this.square1.Size = new System.Drawing.Size(94, 100);
+            this.square1.TabIndex = 1;
+            this.square1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square2
+            // 
+            this.square2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square2.Enabled = false;
+            this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square2.Location = new System.Drawing.Point(212, 3);
+            this.square2.Name = "square2";
+            this.square2.Size = new System.Drawing.Size(94, 100);
+            this.square2.TabIndex = 2;
+            this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square3
+            // 
+            this.square3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square3.Enabled = false;
+            this.square3.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square3.Location = new System.Drawing.Point(6, 106);
+            this.square3.Name = "square3";
+            this.square3.Size = new System.Drawing.Size(94, 100);
+            this.square3.TabIndex = 3;
+            this.square3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square4
+            // 
+            this.square4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square4.Enabled = false;
+            this.square4.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square4.Location = new System.Drawing.Point(109, 106);
+            this.square4.Name = "square4";
+            this.square4.Size = new System.Drawing.Size(94, 100);
+            this.square4.TabIndex = 4;
+            this.square4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square5
+            // 
+            this.square5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square5.Enabled = false;
+            this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square5.Location = new System.Drawing.Point(212, 106);
+            this.square5.Name = "square5";
+            this.square5.Size = new System.Drawing.Size(94, 100);
+            this.square5.TabIndex = 5;
+            this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square6
+            // 
+            this.square6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square6.Enabled = false;
+            this.square6.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square6.Location = new System.Drawing.Point(6, 209);
+            this.square6.Name = "square6";
+            this.square6.Size = new System.Drawing.Size(94, 100);
+            this.square6.TabIndex = 6;
+            this.square6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square7
+            // 
+            this.square7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square7.Enabled = false;
+            this.square7.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square7.Location = new System.Drawing.Point(109, 209);
+            this.square7.Name = "square7";
+            this.square7.Size = new System.Drawing.Size(94, 100);
+            this.square7.TabIndex = 7;
+            this.square7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // square8
+            // 
+            this.square8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square8.Enabled = false;
+            this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square8.Location = new System.Drawing.Point(212, 209);
+            this.square8.Name = "square8";
+            this.square8.Size = new System.Drawing.Size(94, 100);
+            this.square8.TabIndex = 8;
+            this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // TicTacTheory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,6 +637,7 @@
             this.controlPanel.PerformLayout();
             this.settingGamePanel.ResumeLayout(false);
             this.settingGamePanel.PerformLayout();
+            this.gameBoardPanel.ResumeLayout(false);
             this.testAIPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -561,6 +680,15 @@
         private System.Windows.Forms.ProgressBar progressP1;
         private System.Windows.Forms.ProgressBar progressP2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart;
+        private System.Windows.Forms.Label square0;
+        private System.Windows.Forms.Label square2;
+        private System.Windows.Forms.Label square1;
+        private System.Windows.Forms.Label square8;
+        private System.Windows.Forms.Label square7;
+        private System.Windows.Forms.Label square6;
+        private System.Windows.Forms.Label square5;
+        private System.Windows.Forms.Label square4;
+        private System.Windows.Forms.Label square3;
     }
 }
 
