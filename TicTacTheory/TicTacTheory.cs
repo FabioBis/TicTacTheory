@@ -56,5 +56,74 @@ namespace TicTacTheory
         {
             InitializeComponent();
         }
+
+        // Event handlers for the single game mode.
+
+        /// <summary>
+        /// The player click a label to choose a square. This is his next move.
+        /// </summary>
+        private void square_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+        /// <summary>
+        /// The player click the button to start the single game.
+        /// </summary>
+        private void singleGameButton_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+        /// <summary>
+        /// The player select the opponent in the single game.
+        /// </summary>
+        private void selectOpponentBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// The player select who move first in the next single game.
+        /// </summary>
+        private void firtToMoveBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+        // Event handlers for the game streak test mode.
+
+        /// <summary>
+        /// The user click the button to start the tests.
+        /// </summary>
+        private void multiGameButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// The user selects the first player for the test.
+        /// </summary>
+        private void player1Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+        /// <summary>
+        /// The user selects the second player for the test.
+        /// </summary>
+        private void player2Box_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
+        /// <summary>
+        /// The user selects the number of match to be played.
+        /// </summary>
+        private void numberOfMatchesBox_ValueChanged(object sender, EventArgs e)
+        {
+            // TODO
+        }
+
     }
 }

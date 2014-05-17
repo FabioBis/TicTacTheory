@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicTacTheory));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.singleGamePage = new System.Windows.Forms.TabPage();
             this.controlPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -148,6 +148,7 @@
             this.singleGameButton.TabIndex = 1;
             this.singleGameButton.Text = "Start Game";
             this.singleGameButton.UseVisualStyleBackColor = true;
+            this.singleGameButton.Click += new System.EventHandler(this.singleGameButton_Click);
             // 
             // settingGamePanel
             // 
@@ -196,6 +197,7 @@
             this.selectOpponentBox.Name = "selectOpponentBox";
             this.selectOpponentBox.Size = new System.Drawing.Size(102, 21);
             this.selectOpponentBox.TabIndex = 1;
+            this.selectOpponentBox.SelectedIndexChanged += new System.EventHandler(this.selectOpponentBox_SelectedIndexChanged);
             // 
             // firtToMoveLabel
             // 
@@ -222,6 +224,7 @@
             this.firtToMoveBox.Name = "firtToMoveBox";
             this.firtToMoveBox.Size = new System.Drawing.Size(102, 21);
             this.firtToMoveBox.TabIndex = 3;
+            this.firtToMoveBox.SelectedIndexChanged += new System.EventHandler(this.firtToMoveBox_SelectedIndexChanged);
             // 
             // descriptionLabel
             // 
@@ -337,6 +340,7 @@
             this.player2Box.Name = "player2Box";
             this.player2Box.Size = new System.Drawing.Size(100, 21);
             this.player2Box.TabIndex = 5;
+            this.player2Box.SelectedIndexChanged += new System.EventHandler(this.player2Box_SelectedIndexChanged);
             // 
             // explainMultiGameBox
             // 
@@ -406,6 +410,7 @@
             this.player1Box.Name = "player1Box";
             this.player1Box.Size = new System.Drawing.Size(100, 21);
             this.player1Box.TabIndex = 4;
+            this.player1Box.SelectedIndexChanged += new System.EventHandler(this.player1Box_SelectedIndexChanged);
             // 
             // numberOfMatchesBox
             // 
@@ -413,6 +418,7 @@
             this.numberOfMatchesBox.Name = "numberOfMatchesBox";
             this.numberOfMatchesBox.Size = new System.Drawing.Size(100, 20);
             this.numberOfMatchesBox.TabIndex = 6;
+            this.numberOfMatchesBox.ValueChanged += new System.EventHandler(this.numberOfMatchesBox_ValueChanged);
             // 
             // multiGameButton
             // 
@@ -425,6 +431,7 @@
             this.multiGameButton.TabIndex = 7;
             this.multiGameButton.Text = "Start Test";
             this.multiGameButton.UseVisualStyleBackColor = true;
+            this.multiGameButton.Click += new System.EventHandler(this.multiGameButton_Click);
             // 
             // totalGameProgress
             // 
@@ -503,19 +510,19 @@
             // chart
             // 
             this.chart.BackColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
+            chartArea4.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea4);
             this.tableLayoutPanel1.SetColumnSpan(this.chart, 3);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
+            legend4.Name = "Legend1";
+            this.chart.Legends.Add(legend4);
             this.chart.Location = new System.Drawing.Point(3, 353);
             this.chart.Name = "chart";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart.Series.Add(series4);
             this.chart.Size = new System.Drawing.Size(312, 169);
             this.chart.TabIndex = 16;
             this.chart.Text = "chart1";
@@ -530,6 +537,7 @@
             this.square0.Size = new System.Drawing.Size(94, 100);
             this.square0.TabIndex = 0;
             this.square0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square0.Click += new System.EventHandler(this.square_Click);
             // 
             // square1
             // 
@@ -541,6 +549,7 @@
             this.square1.Size = new System.Drawing.Size(94, 100);
             this.square1.TabIndex = 1;
             this.square1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square1.Click += new System.EventHandler(this.square_Click);
             // 
             // square2
             // 
@@ -552,6 +561,7 @@
             this.square2.Size = new System.Drawing.Size(94, 100);
             this.square2.TabIndex = 2;
             this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square2.Click += new System.EventHandler(this.square_Click);
             // 
             // square3
             // 
@@ -563,6 +573,7 @@
             this.square3.Size = new System.Drawing.Size(94, 100);
             this.square3.TabIndex = 3;
             this.square3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square3.Click += new System.EventHandler(this.square_Click);
             // 
             // square4
             // 
@@ -574,6 +585,7 @@
             this.square4.Size = new System.Drawing.Size(94, 100);
             this.square4.TabIndex = 4;
             this.square4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square4.Click += new System.EventHandler(this.square_Click);
             // 
             // square5
             // 
@@ -585,6 +597,7 @@
             this.square5.Size = new System.Drawing.Size(94, 100);
             this.square5.TabIndex = 5;
             this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square5.Click += new System.EventHandler(this.square_Click);
             // 
             // square6
             // 
@@ -596,6 +609,7 @@
             this.square6.Size = new System.Drawing.Size(94, 100);
             this.square6.TabIndex = 6;
             this.square6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square6.Click += new System.EventHandler(this.square_Click);
             // 
             // square7
             // 
@@ -607,6 +621,7 @@
             this.square7.Size = new System.Drawing.Size(94, 100);
             this.square7.TabIndex = 7;
             this.square7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square7.Click += new System.EventHandler(this.square_Click);
             // 
             // square8
             // 
@@ -618,6 +633,7 @@
             this.square8.Size = new System.Drawing.Size(94, 100);
             this.square8.TabIndex = 8;
             this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square8.Click += new System.EventHandler(this.square_Click);
             // 
             // TicTacTheory
             // 
