@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicTacTheory));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.singleGamePage = new System.Windows.Forms.TabPage();
             this.controlPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -41,7 +41,7 @@
             this.selectOpponentLabel = new System.Windows.Forms.Label();
             this.selectOpponentBox = new System.Windows.Forms.ComboBox();
             this.firtToMoveLabel = new System.Windows.Forms.Label();
-            this.firtToMoveBox = new System.Windows.Forms.ComboBox();
+            this.firstToMoveBox = new System.Windows.Forms.ComboBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.gameBoardPanel = new System.Windows.Forms.TableLayoutPanel();
             this.square8 = new System.Windows.Forms.Label();
@@ -146,7 +146,7 @@
             this.singleGameButton.Name = "singleGameButton";
             this.singleGameButton.Size = new System.Drawing.Size(148, 37);
             this.singleGameButton.TabIndex = 1;
-            this.singleGameButton.Text = "Start Game";
+            this.singleGameButton.Text = "Start";
             this.singleGameButton.UseVisualStyleBackColor = true;
             this.singleGameButton.Click += new System.EventHandler(this.singleGameButton_Click);
             // 
@@ -159,7 +159,7 @@
             this.settingGamePanel.Controls.Add(this.selectOpponentLabel, 0, 0);
             this.settingGamePanel.Controls.Add(this.selectOpponentBox, 2, 0);
             this.settingGamePanel.Controls.Add(this.firtToMoveLabel, 0, 1);
-            this.settingGamePanel.Controls.Add(this.firtToMoveBox, 2, 1);
+            this.settingGamePanel.Controls.Add(this.firstToMoveBox, 2, 1);
             this.settingGamePanel.Controls.Add(this.descriptionLabel, 0, 2);
             this.settingGamePanel.Location = new System.Drawing.Point(11, 6);
             this.settingGamePanel.Name = "settingGamePanel";
@@ -212,19 +212,19 @@
             this.firtToMoveLabel.Text = "Who move first?";
             this.firtToMoveLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // firtToMoveBox
+            // firstToMoveBox
             // 
-            this.firtToMoveBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.firtToMoveBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.firtToMoveBox.FormattingEnabled = true;
-            this.firtToMoveBox.Items.AddRange(new object[] {
+            this.firstToMoveBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.firstToMoveBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.firstToMoveBox.FormattingEnabled = true;
+            this.firstToMoveBox.Items.AddRange(new object[] {
             "Me",
             "Opponent"});
-            this.firtToMoveBox.Location = new System.Drawing.Point(203, 27);
-            this.firtToMoveBox.Name = "firtToMoveBox";
-            this.firtToMoveBox.Size = new System.Drawing.Size(102, 21);
-            this.firtToMoveBox.TabIndex = 3;
-            this.firtToMoveBox.SelectedIndexChanged += new System.EventHandler(this.firtToMoveBox_SelectedIndexChanged);
+            this.firstToMoveBox.Location = new System.Drawing.Point(203, 27);
+            this.firstToMoveBox.Name = "firstToMoveBox";
+            this.firstToMoveBox.Size = new System.Drawing.Size(102, 21);
+            this.firstToMoveBox.TabIndex = 3;
+            this.firstToMoveBox.SelectedIndexChanged += new System.EventHandler(this.firstToMoveBox_SelectedIndexChanged);
             // 
             // descriptionLabel
             // 
@@ -246,7 +246,7 @@
             this.gameBoardPanel.ColumnCount = 3;
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
+            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
             this.gameBoardPanel.Controls.Add(this.square8, 2, 2);
             this.gameBoardPanel.Controls.Add(this.square7, 1, 2);
             this.gameBoardPanel.Controls.Add(this.square6, 0, 2);
@@ -256,13 +256,13 @@
             this.gameBoardPanel.Controls.Add(this.square2, 2, 0);
             this.gameBoardPanel.Controls.Add(this.square1, 1, 0);
             this.gameBoardPanel.Controls.Add(this.square0, 0, 0);
-            this.gameBoardPanel.Location = new System.Drawing.Point(11, 132);
+            this.gameBoardPanel.Location = new System.Drawing.Point(8, 133);
             this.gameBoardPanel.Name = "gameBoardPanel";
             this.gameBoardPanel.RowCount = 3;
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.Size = new System.Drawing.Size(312, 312);
+            this.gameBoardPanel.Size = new System.Drawing.Size(316, 312);
             this.gameBoardPanel.TabIndex = 0;
             // 
             // square8
@@ -272,7 +272,7 @@
             this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square8.Location = new System.Drawing.Point(212, 209);
             this.square8.Name = "square8";
-            this.square8.Size = new System.Drawing.Size(97, 100);
+            this.square8.Size = new System.Drawing.Size(100, 100);
             this.square8.TabIndex = 8;
             this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square8.Click += new System.EventHandler(this.square_Click);
@@ -308,7 +308,7 @@
             this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square5.Location = new System.Drawing.Point(212, 106);
             this.square5.Name = "square5";
-            this.square5.Size = new System.Drawing.Size(97, 100);
+            this.square5.Size = new System.Drawing.Size(100, 100);
             this.square5.TabIndex = 5;
             this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square5.Click += new System.EventHandler(this.square_Click);
@@ -344,7 +344,7 @@
             this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square2.Location = new System.Drawing.Point(212, 3);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(97, 100);
+            this.square2.Size = new System.Drawing.Size(100, 100);
             this.square2.TabIndex = 2;
             this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square2.Click += new System.EventHandler(this.square_Click);
@@ -448,7 +448,6 @@
             this.player2Box.Name = "player2Box";
             this.player2Box.Size = new System.Drawing.Size(100, 21);
             this.player2Box.TabIndex = 5;
-            this.player2Box.SelectedIndexChanged += new System.EventHandler(this.player2Box_SelectedIndexChanged);
             // 
             // explainMultiGameBox
             // 
@@ -518,7 +517,6 @@
             this.player1Box.Name = "player1Box";
             this.player1Box.Size = new System.Drawing.Size(100, 21);
             this.player1Box.TabIndex = 4;
-            this.player1Box.SelectedIndexChanged += new System.EventHandler(this.player1Box_SelectedIndexChanged);
             // 
             // numberOfMatchesBox
             // 
@@ -526,7 +524,6 @@
             this.numberOfMatchesBox.Name = "numberOfMatchesBox";
             this.numberOfMatchesBox.Size = new System.Drawing.Size(100, 20);
             this.numberOfMatchesBox.TabIndex = 6;
-            this.numberOfMatchesBox.ValueChanged += new System.EventHandler(this.numberOfMatchesBox_ValueChanged);
             // 
             // multiGameButton
             // 
@@ -537,9 +534,8 @@
             this.multiGameButton.Name = "multiGameButton";
             this.multiGameButton.Size = new System.Drawing.Size(140, 37);
             this.multiGameButton.TabIndex = 7;
-            this.multiGameButton.Text = "Start Test";
+            this.multiGameButton.Text = "Start";
             this.multiGameButton.UseVisualStyleBackColor = true;
-            this.multiGameButton.Click += new System.EventHandler(this.multiGameButton_Click);
             // 
             // totalGameProgress
             // 
@@ -618,19 +614,19 @@
             // chart
             // 
             this.chart.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea4);
             this.tableLayoutPanel1.SetColumnSpan(this.chart, 3);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart.Legends.Add(legend1);
+            legend4.Name = "Legend1";
+            this.chart.Legends.Add(legend4);
             this.chart.Location = new System.Drawing.Point(3, 353);
             this.chart.Name = "chart";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart.Series.Add(series1);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart.Series.Add(series4);
             this.chart.Size = new System.Drawing.Size(312, 169);
             this.chart.TabIndex = 16;
             this.chart.Text = "chart1";
@@ -674,7 +670,7 @@
         private System.Windows.Forms.Label selectOpponentLabel;
         private System.Windows.Forms.ComboBox selectOpponentBox;
         private System.Windows.Forms.Label firtToMoveLabel;
-        private System.Windows.Forms.ComboBox firtToMoveBox;
+        private System.Windows.Forms.ComboBox firstToMoveBox;
         private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.Label messageLabel;
         private System.Windows.Forms.Button singleGameButton;
