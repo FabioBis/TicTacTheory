@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace TicTacTheory
 {
@@ -50,11 +51,24 @@ namespace TicTacTheory
         Empty
     }
 
+    /// <summary>
+    /// Define the state of a standard start/stop button.
+    /// </summary>
+    enum ButtonState
+    {
+        Start,
+        Stop
+    }
+
     public partial class TicTacTheory : Form
     {
-        // Delegators for safe multithread.
-        delegate void SingleGameDelegate();
-        delegate void MultiGameDelegate();
+        // Button states.
+        ButtonState singleButtonState = ButtonState.Start;
+        ButtonState multiButtonState = ButtonState.Start;
+
+        // Threads.
+        Thread singleGameThread = null;
+        Thread multiGameThread = null;
 
         /// <summary>
         /// Constructor.
@@ -62,6 +76,26 @@ namespace TicTacTheory
         public TicTacTheory()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Switch the state of a given button.
+        /// 
+        /// Usage:
+        /// <code>buttonStateOut = switchButtonState(buttonStateIn);</code>
+        /// </summary>
+        /// <param name="state">The input button state.</param>
+        /// <returns>The opposite input button state.</returns>
+        private ButtonState switchButtonState(ButtonState state)
+        {
+            if (state.Equals(ButtonState.Start))
+            {
+                return ButtonState.Stop;
+            }
+            else
+            {
+                return ButtonState.Start;
+            }
         }
 
         /* Single Game methods. */
@@ -99,8 +133,16 @@ namespace TicTacTheory
         /// </summary>
         private void singleGameButton_Click(object sender, EventArgs e)
         {
-            SingleGameDelegate singleGame = new SingleGameDelegate(SingleGameStart);
-            singleGame.BeginInvoke(null, null);
+            if (singleButtonState.Equals(ButtonState.Start))
+            {
+                singleGameThread = new Thread(new ThreadStart(SingleGameStart));
+                singleGameThread.Start();
+            }
+            else
+            {
+                singleGameThread.Abort();
+            }
+            singleButtonState = switchButtonState(singleButtonState);
         }
 
         /// <summary>
@@ -108,8 +150,16 @@ namespace TicTacTheory
         /// </summary>
         private void selectOpponentBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MultiGameDelegate multiGame = new MultiGameDelegate(MultiGameStart);
-            multiGame.BeginInvoke(null, null);
+            if (multiButtonState.Equals(ButtonState.Start))
+            {
+                multiGameThread = new Thread(new ThreadStart(MultiGameStart));
+                multiGameThread.Start();
+            }
+            else
+            {
+                multiGameThread.Abort();
+            }
+            multiButtonState = switchButtonState(multiButtonState);
         }
 
         /// <summary>

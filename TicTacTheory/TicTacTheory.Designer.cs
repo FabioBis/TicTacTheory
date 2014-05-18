@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicTacTheory));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.singleGamePage = new System.Windows.Forms.TabPage();
             this.controlPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -44,6 +44,15 @@
             this.firtToMoveBox = new System.Windows.Forms.ComboBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.gameBoardPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.square8 = new System.Windows.Forms.Label();
+            this.square7 = new System.Windows.Forms.Label();
+            this.square6 = new System.Windows.Forms.Label();
+            this.square5 = new System.Windows.Forms.Label();
+            this.square4 = new System.Windows.Forms.Label();
+            this.square3 = new System.Windows.Forms.Label();
+            this.square2 = new System.Windows.Forms.Label();
+            this.square1 = new System.Windows.Forms.Label();
+            this.square0 = new System.Windows.Forms.Label();
             this.testAIPage = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.progressDraws = new System.Windows.Forms.ProgressBar();
@@ -63,15 +72,6 @@
             this.progressP1 = new System.Windows.Forms.ProgressBar();
             this.progressP2 = new System.Windows.Forms.ProgressBar();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.square0 = new System.Windows.Forms.Label();
-            this.square1 = new System.Windows.Forms.Label();
-            this.square2 = new System.Windows.Forms.Label();
-            this.square3 = new System.Windows.Forms.Label();
-            this.square4 = new System.Windows.Forms.Label();
-            this.square5 = new System.Windows.Forms.Label();
-            this.square6 = new System.Windows.Forms.Label();
-            this.square7 = new System.Windows.Forms.Label();
-            this.square8 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.singleGamePage.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -246,7 +246,7 @@
             this.gameBoardPanel.ColumnCount = 3;
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.gameBoardPanel.Controls.Add(this.square8, 2, 2);
             this.gameBoardPanel.Controls.Add(this.square7, 1, 2);
             this.gameBoardPanel.Controls.Add(this.square6, 0, 2);
@@ -264,6 +264,114 @@
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.Size = new System.Drawing.Size(312, 312);
             this.gameBoardPanel.TabIndex = 0;
+            // 
+            // square8
+            // 
+            this.square8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square8.Enabled = false;
+            this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square8.Location = new System.Drawing.Point(212, 209);
+            this.square8.Name = "square8";
+            this.square8.Size = new System.Drawing.Size(97, 100);
+            this.square8.TabIndex = 8;
+            this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square8.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square7
+            // 
+            this.square7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square7.Enabled = false;
+            this.square7.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square7.Location = new System.Drawing.Point(109, 209);
+            this.square7.Name = "square7";
+            this.square7.Size = new System.Drawing.Size(94, 100);
+            this.square7.TabIndex = 7;
+            this.square7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square7.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square6
+            // 
+            this.square6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square6.Enabled = false;
+            this.square6.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square6.Location = new System.Drawing.Point(6, 209);
+            this.square6.Name = "square6";
+            this.square6.Size = new System.Drawing.Size(94, 100);
+            this.square6.TabIndex = 6;
+            this.square6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square6.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square5
+            // 
+            this.square5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square5.Enabled = false;
+            this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square5.Location = new System.Drawing.Point(212, 106);
+            this.square5.Name = "square5";
+            this.square5.Size = new System.Drawing.Size(97, 100);
+            this.square5.TabIndex = 5;
+            this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square5.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square4
+            // 
+            this.square4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square4.Enabled = false;
+            this.square4.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square4.Location = new System.Drawing.Point(109, 106);
+            this.square4.Name = "square4";
+            this.square4.Size = new System.Drawing.Size(94, 100);
+            this.square4.TabIndex = 4;
+            this.square4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square4.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square3
+            // 
+            this.square3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square3.Enabled = false;
+            this.square3.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square3.Location = new System.Drawing.Point(6, 106);
+            this.square3.Name = "square3";
+            this.square3.Size = new System.Drawing.Size(94, 100);
+            this.square3.TabIndex = 3;
+            this.square3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square3.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square2
+            // 
+            this.square2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square2.Enabled = false;
+            this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square2.Location = new System.Drawing.Point(212, 3);
+            this.square2.Name = "square2";
+            this.square2.Size = new System.Drawing.Size(97, 100);
+            this.square2.TabIndex = 2;
+            this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square2.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square1
+            // 
+            this.square1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square1.Enabled = false;
+            this.square1.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square1.Location = new System.Drawing.Point(109, 3);
+            this.square1.Name = "square1";
+            this.square1.Size = new System.Drawing.Size(94, 100);
+            this.square1.TabIndex = 1;
+            this.square1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square1.Click += new System.EventHandler(this.square_Click);
+            // 
+            // square0
+            // 
+            this.square0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.square0.Enabled = false;
+            this.square0.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.square0.Location = new System.Drawing.Point(6, 3);
+            this.square0.Name = "square0";
+            this.square0.Size = new System.Drawing.Size(94, 100);
+            this.square0.TabIndex = 0;
+            this.square0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.square0.Click += new System.EventHandler(this.square_Click);
             // 
             // testAIPage
             // 
@@ -510,130 +618,22 @@
             // chart
             // 
             this.chart.BackColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea4);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
             this.tableLayoutPanel1.SetColumnSpan(this.chart, 3);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chart.Legends.Add(legend4);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(3, 353);
             this.chart.Name = "chart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(312, 169);
             this.chart.TabIndex = 16;
             this.chart.Text = "chart1";
-            // 
-            // square0
-            // 
-            this.square0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square0.Enabled = false;
-            this.square0.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square0.Location = new System.Drawing.Point(6, 3);
-            this.square0.Name = "square0";
-            this.square0.Size = new System.Drawing.Size(94, 100);
-            this.square0.TabIndex = 0;
-            this.square0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square0.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square1
-            // 
-            this.square1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square1.Enabled = false;
-            this.square1.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square1.Location = new System.Drawing.Point(109, 3);
-            this.square1.Name = "square1";
-            this.square1.Size = new System.Drawing.Size(94, 100);
-            this.square1.TabIndex = 1;
-            this.square1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square1.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square2
-            // 
-            this.square2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square2.Enabled = false;
-            this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square2.Location = new System.Drawing.Point(212, 3);
-            this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(94, 100);
-            this.square2.TabIndex = 2;
-            this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square2.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square3
-            // 
-            this.square3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square3.Enabled = false;
-            this.square3.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square3.Location = new System.Drawing.Point(6, 106);
-            this.square3.Name = "square3";
-            this.square3.Size = new System.Drawing.Size(94, 100);
-            this.square3.TabIndex = 3;
-            this.square3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square3.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square4
-            // 
-            this.square4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square4.Enabled = false;
-            this.square4.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square4.Location = new System.Drawing.Point(109, 106);
-            this.square4.Name = "square4";
-            this.square4.Size = new System.Drawing.Size(94, 100);
-            this.square4.TabIndex = 4;
-            this.square4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square4.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square5
-            // 
-            this.square5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square5.Enabled = false;
-            this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square5.Location = new System.Drawing.Point(212, 106);
-            this.square5.Name = "square5";
-            this.square5.Size = new System.Drawing.Size(94, 100);
-            this.square5.TabIndex = 5;
-            this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square5.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square6
-            // 
-            this.square6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square6.Enabled = false;
-            this.square6.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square6.Location = new System.Drawing.Point(6, 209);
-            this.square6.Name = "square6";
-            this.square6.Size = new System.Drawing.Size(94, 100);
-            this.square6.TabIndex = 6;
-            this.square6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square6.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square7
-            // 
-            this.square7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square7.Enabled = false;
-            this.square7.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square7.Location = new System.Drawing.Point(109, 209);
-            this.square7.Name = "square7";
-            this.square7.Size = new System.Drawing.Size(94, 100);
-            this.square7.TabIndex = 7;
-            this.square7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square7.Click += new System.EventHandler(this.square_Click);
-            // 
-            // square8
-            // 
-            this.square8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.square8.Enabled = false;
-            this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.square8.Location = new System.Drawing.Point(212, 209);
-            this.square8.Name = "square8";
-            this.square8.Size = new System.Drawing.Size(94, 100);
-            this.square8.TabIndex = 8;
-            this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.square8.Click += new System.EventHandler(this.square_Click);
             // 
             // TicTacTheory
             // 
