@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicTacTheory));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.singleGamePage = new System.Windows.Forms.TabPage();
             this.controlPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -246,7 +246,7 @@
             this.gameBoardPanel.ColumnCount = 3;
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.gameBoardPanel.Controls.Add(this.square8, 2, 2);
             this.gameBoardPanel.Controls.Add(this.square7, 1, 2);
             this.gameBoardPanel.Controls.Add(this.square6, 0, 2);
@@ -272,7 +272,7 @@
             this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square8.Location = new System.Drawing.Point(212, 209);
             this.square8.Name = "square8";
-            this.square8.Size = new System.Drawing.Size(100, 100);
+            this.square8.Size = new System.Drawing.Size(106, 100);
             this.square8.TabIndex = 8;
             this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square8.Click += new System.EventHandler(this.square_Click);
@@ -308,7 +308,7 @@
             this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square5.Location = new System.Drawing.Point(212, 106);
             this.square5.Name = "square5";
-            this.square5.Size = new System.Drawing.Size(100, 100);
+            this.square5.Size = new System.Drawing.Size(106, 100);
             this.square5.TabIndex = 5;
             this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square5.Click += new System.EventHandler(this.square_Click);
@@ -344,7 +344,7 @@
             this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square2.Location = new System.Drawing.Point(212, 3);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(100, 100);
+            this.square2.Size = new System.Drawing.Size(106, 100);
             this.square2.TabIndex = 2;
             this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square2.Click += new System.EventHandler(this.square_Click);
@@ -614,19 +614,19 @@
             // chart
             // 
             this.chart.BackColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea4);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
             this.tableLayoutPanel1.SetColumnSpan(this.chart, 3);
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chart.Legends.Add(legend4);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(3, 353);
             this.chart.Name = "chart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart.Series.Add(series4);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
             this.chart.Size = new System.Drawing.Size(312, 169);
             this.chart.TabIndex = 16;
             this.chart.Text = "chart1";

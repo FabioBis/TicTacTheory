@@ -739,7 +739,39 @@ namespace TicTacTheory
         /// </summary>
         private void player1Box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TODO
+            if (player1Box.SelectedItem != null)
+            {
+                if (Enum.TryParse<AI>(player1Box.SelectedItem.ToString(),
+                    true, out aiPlayer1))
+                {
+                    switch (aiPlayer1)
+                    {
+                        case AI.Sheldon:
+                            player1 = "Player 1 (Sheldon)";
+                            break;
+                        case AI.Penny:
+                            player1 = "Player 1 (Penny)";
+                            break;
+                        case AI.Stuart:
+                            player1 = "Player 1 (Stuart)";
+                            break;
+                        default:
+                            messageLabel.Font = new Font(messageLabel.Font.Name,
+                                 9, messageLabel.Font.Style, messageLabel.Font.Unit);
+                            messageLabel.Text = "A problem occoured,"
+                            + " please chose the opponent again";
+                            break;
+                    }
+                }
+                else
+                {
+                    aiPlayer1 = AI.Empty;
+                    messageLabel.Font = new Font(messageLabel.Font.Name,
+                                9, messageLabel.Font.Style, messageLabel.Font.Unit);
+                    messageLabel.Text = "A problem occoured, please choose"
+                    + " the opponent again.";
+                }
+            }
         }
 
         /// <summary>
@@ -747,7 +779,39 @@ namespace TicTacTheory
         /// </summary>
         private void player2Box_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TODO
+            if (player2Box.SelectedItem != null)
+            {
+                if (Enum.TryParse<AI>(player2Box.SelectedItem.ToString(),
+                    true, out aiPlayer2))
+                {
+                    switch (aiPlayer2)
+                    {
+                        case AI.Sheldon:
+                            player2 = "Player 2 (Sheldon)";
+                            break;
+                        case AI.Penny:
+                            player2 = "Player 2 (Penny)";
+                            break;
+                        case AI.Stuart:
+                            player2 = "Player 2 (Stuart)";
+                            break;
+                        default:
+                            messageLabel.Font = new Font(messageLabel.Font.Name,
+                                 9, messageLabel.Font.Style, messageLabel.Font.Unit);
+                            messageLabel.Text = "A problem occoured,"
+                            + " please chose the opponent again";
+                            break;
+                    }
+                }
+                else
+                {
+                    aiPlayer2 = AI.Empty;
+                    messageLabel.Font = new Font(messageLabel.Font.Name,
+                                9, messageLabel.Font.Style, messageLabel.Font.Unit);
+                    messageLabel.Text = "A problem occoured, please choose"
+                    + " the opponent again.";
+                }
+            }
         }
 
         /// <summary>
