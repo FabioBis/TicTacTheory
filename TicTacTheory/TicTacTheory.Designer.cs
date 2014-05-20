@@ -72,6 +72,7 @@
             this.progressP1 = new System.Windows.Forms.ProgressBar();
             this.progressP2 = new System.Windows.Forms.ProgressBar();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.messageTestsLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.singleGamePage.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -246,7 +247,7 @@
             this.gameBoardPanel.ColumnCount = 3;
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
+            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
             this.gameBoardPanel.Controls.Add(this.square8, 2, 2);
             this.gameBoardPanel.Controls.Add(this.square7, 1, 2);
             this.gameBoardPanel.Controls.Add(this.square6, 0, 2);
@@ -272,7 +273,7 @@
             this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square8.Location = new System.Drawing.Point(212, 209);
             this.square8.Name = "square8";
-            this.square8.Size = new System.Drawing.Size(106, 100);
+            this.square8.Size = new System.Drawing.Size(112, 100);
             this.square8.TabIndex = 8;
             this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square8.Click += new System.EventHandler(this.square_Click);
@@ -308,7 +309,7 @@
             this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square5.Location = new System.Drawing.Point(212, 106);
             this.square5.Name = "square5";
-            this.square5.Size = new System.Drawing.Size(106, 100);
+            this.square5.Size = new System.Drawing.Size(112, 100);
             this.square5.TabIndex = 5;
             this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square5.Click += new System.EventHandler(this.square_Click);
@@ -344,7 +345,7 @@
             this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square2.Location = new System.Drawing.Point(212, 3);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(106, 100);
+            this.square2.Size = new System.Drawing.Size(112, 100);
             this.square2.TabIndex = 2;
             this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square2.Click += new System.EventHandler(this.square_Click);
@@ -407,6 +408,7 @@
             this.tableLayoutPanel1.Controls.Add(this.progressP1, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.progressP2, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.chart, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.messageTestsLabel, 0, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 12;
@@ -416,7 +418,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -429,7 +431,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.progressDraws, 2);
             this.progressDraws.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressDraws.Location = new System.Drawing.Point(109, 333);
+            this.progressDraws.Location = new System.Drawing.Point(109, 343);
             this.progressDraws.Name = "progressDraws";
             this.progressDraws.Size = new System.Drawing.Size(206, 14);
             this.progressDraws.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -448,6 +450,7 @@
             this.player2Box.Name = "player2Box";
             this.player2Box.Size = new System.Drawing.Size(100, 21);
             this.player2Box.TabIndex = 5;
+            this.player2Box.SelectedIndexChanged += new System.EventHandler(this.player2Box_SelectedIndexChanged);
             // 
             // explainMultiGameBox
             // 
@@ -517,13 +520,30 @@
             this.player1Box.Name = "player1Box";
             this.player1Box.Size = new System.Drawing.Size(100, 21);
             this.player1Box.TabIndex = 4;
+            this.player1Box.SelectedIndexChanged += new System.EventHandler(this.player1Box_SelectedIndexChanged);
             // 
             // numberOfMatchesBox
             // 
             this.numberOfMatchesBox.Location = new System.Drawing.Point(215, 178);
+            this.numberOfMatchesBox.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numberOfMatchesBox.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numberOfMatchesBox.Name = "numberOfMatchesBox";
             this.numberOfMatchesBox.Size = new System.Drawing.Size(100, 20);
             this.numberOfMatchesBox.TabIndex = 6;
+            this.numberOfMatchesBox.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numberOfMatchesBox.ValueChanged += new System.EventHandler(this.numberOfMatchesBox_ValueChanged);
             // 
             // multiGameButton
             // 
@@ -536,12 +556,13 @@
             this.multiGameButton.TabIndex = 7;
             this.multiGameButton.Text = "Start";
             this.multiGameButton.UseVisualStyleBackColor = true;
+            this.multiGameButton.Click += new System.EventHandler(this.multiGameButton_Click);
             // 
             // totalGameProgress
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.totalGameProgress, 2);
             this.totalGameProgress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.totalGameProgress.Location = new System.Drawing.Point(109, 273);
+            this.totalGameProgress.Location = new System.Drawing.Point(109, 283);
             this.totalGameProgress.Name = "totalGameProgress";
             this.totalGameProgress.Size = new System.Drawing.Size(206, 14);
             this.totalGameProgress.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -552,7 +573,7 @@
             this.labelTotalProgress.AutoSize = true;
             this.labelTotalProgress.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelTotalProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotalProgress.Location = new System.Drawing.Point(3, 270);
+            this.labelTotalProgress.Location = new System.Drawing.Point(3, 280);
             this.labelTotalProgress.Name = "labelTotalProgress";
             this.labelTotalProgress.Size = new System.Drawing.Size(100, 20);
             this.labelTotalProgress.TabIndex = 9;
@@ -563,7 +584,7 @@
             this.labelP1Victories.AutoSize = true;
             this.labelP1Victories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelP1Victories.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelP1Victories.Location = new System.Drawing.Point(3, 290);
+            this.labelP1Victories.Location = new System.Drawing.Point(3, 300);
             this.labelP1Victories.Name = "labelP1Victories";
             this.labelP1Victories.Size = new System.Drawing.Size(100, 20);
             this.labelP1Victories.TabIndex = 10;
@@ -574,7 +595,7 @@
             this.labelP2Victories.AutoSize = true;
             this.labelP2Victories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelP2Victories.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelP2Victories.Location = new System.Drawing.Point(3, 310);
+            this.labelP2Victories.Location = new System.Drawing.Point(3, 320);
             this.labelP2Victories.Name = "labelP2Victories";
             this.labelP2Victories.Size = new System.Drawing.Size(100, 20);
             this.labelP2Victories.TabIndex = 11;
@@ -585,7 +606,7 @@
             this.labelDraws.AutoSize = true;
             this.labelDraws.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelDraws.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDraws.Location = new System.Drawing.Point(3, 330);
+            this.labelDraws.Location = new System.Drawing.Point(3, 340);
             this.labelDraws.Name = "labelDraws";
             this.labelDraws.Size = new System.Drawing.Size(100, 20);
             this.labelDraws.TabIndex = 12;
@@ -595,7 +616,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.progressP1, 2);
             this.progressP1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressP1.Location = new System.Drawing.Point(109, 293);
+            this.progressP1.Location = new System.Drawing.Point(109, 303);
             this.progressP1.Name = "progressP1";
             this.progressP1.Size = new System.Drawing.Size(206, 14);
             this.progressP1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -605,7 +626,7 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.progressP2, 2);
             this.progressP2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressP2.Location = new System.Drawing.Point(109, 313);
+            this.progressP2.Location = new System.Drawing.Point(109, 323);
             this.progressP2.Name = "progressP2";
             this.progressP2.Size = new System.Drawing.Size(206, 14);
             this.progressP2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
@@ -620,7 +641,7 @@
             this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Name = "Legend1";
             this.chart.Legends.Add(legend1);
-            this.chart.Location = new System.Drawing.Point(3, 353);
+            this.chart.Location = new System.Drawing.Point(3, 363);
             this.chart.Name = "chart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -630,6 +651,19 @@
             this.chart.Size = new System.Drawing.Size(312, 169);
             this.chart.TabIndex = 16;
             this.chart.Text = "chart1";
+            // 
+            // messageTestsLabel
+            // 
+            this.messageTestsLabel.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.messageTestsLabel, 3);
+            this.messageTestsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.messageTestsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageTestsLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.messageTestsLabel.Location = new System.Drawing.Point(3, 250);
+            this.messageTestsLabel.Name = "messageTestsLabel";
+            this.messageTestsLabel.Size = new System.Drawing.Size(312, 30);
+            this.messageTestsLabel.TabIndex = 17;
+            this.messageTestsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TicTacTheory
             // 
@@ -701,6 +735,7 @@
         private System.Windows.Forms.Label square5;
         private System.Windows.Forms.Label square4;
         private System.Windows.Forms.Label square3;
+        private System.Windows.Forms.Label messageTestsLabel;
     }
 }
 

@@ -74,6 +74,10 @@ namespace TicTacTheory
         // Delegates.
         delegate void UpdateTextDelegate(Control ctl, string text);
         delegate void UpdateEnabledDelegate(Control crl, bool p);
+        delegate void ShowProgressDelegate(int result);
+        delegate void UpdateResultsDelegate(int total);
+        delegate void InitStatisticsDelegate(int total);
+        delegate void UpdateMaximumDelegate(ProgressBar ctl, int total);
 
         // The game core.
         private TicTacToeCore game;
@@ -119,6 +123,9 @@ namespace TicTacTheory
         int p1Wins = 0;
         int p2Wins = 0;
 
+        // Is streak ended?
+        bool streakEnded = false;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -162,6 +169,63 @@ namespace TicTacTheory
             }
         }
 
+        private void ShowProgress(int result)
+        {
+            switch (result)
+            {
+                case -2:
+                    progressP1.PerformStep();
+                    break;
+                case 2:
+                    progressP2.PerformStep();
+                    break;
+                case 1:
+                    progressDraws.PerformStep();
+                    break;
+                default:
+                    break;
+            }
+            totalGameProgress.PerformStep();
+        }
+
+        private void UpdateResults(int total)
+        {
+            if (p1Wins > p2Wins)
+            {
+                UpdateText(messageTestsLabel, player1 + " is the winner!");
+            }
+            else if (p2Wins > p1Wins)
+            {
+                UpdateText(messageTestsLabel, player2 + " is the winner!");
+            }
+            else
+            {
+                UpdateText(messageTestsLabel, "The competition is a draw!");
+            }
+        }
+
+        private void InitStatistics(int total)
+        {
+            UpdateMaximum(totalGameProgress, total);
+            UpdateMaximum(progressDraws, total);
+            UpdateMaximum(progressP1, total);
+            UpdateMaximum(progressP2, total);
+        }
+
+        private void UpdateMaximum(ProgressBar ctl, int total)
+        {
+        if (ctl.InvokeRequired)
+            {
+                UpdateMaximumDelegate callbackMethod =
+                    new UpdateMaximumDelegate(UpdateMaximum);
+                this.Invoke(callbackMethod, ctl, total);
+            }
+            else
+            {
+                ctl.Maximum = total;
+            }
+        }
+
         /* Class functions and methods. */
 
         /// <summary>
@@ -172,16 +236,16 @@ namespace TicTacTheory
         /// </summary>
         /// <param name="state">The input button state.</param>
         /// <returns>The opposite input button state.</returns>
-        private ButtonState switchButtonState(ButtonState state)
+        private ButtonState switchButtonState(ButtonState state, Control btn)
         {
             if (state.Equals(ButtonState.Start))
             {
-                UpdateText(singleGameButton, "Stop");
+                UpdateText(btn, "Stop");
                 return ButtonState.Stop;
             }
             else
             {
-                UpdateText(singleGameButton, "Start");
+                UpdateText(btn, "Start");
                 return ButtonState.Start;
             }
         }
@@ -372,6 +436,46 @@ namespace TicTacTheory
             }
         }
 
+        /// <summary>
+        /// Auxiliary method to alternate the AI moves within a single game.
+        /// </summary>
+        private void aiMove(
+            TicTacToeStrategy strategy1,
+            TicTacToeStrategy strategy2,
+            int turn)
+        {
+            if (turn == -1)
+            {
+                aiMove(strategy1, strategy2);
+            }
+            else
+            {
+                aiMove(strategy2, strategy1);
+            }
+        }
+
+        /// <summary>
+        /// Executes an AI move
+        /// </summary>
+        /// <param name="strategy1"></param>
+        /// <param name="strategy2"></param>
+        private void aiMove(
+            TicTacToeStrategy strategy1,
+            TicTacToeStrategy strategy2)
+        {
+            // The AI make his move, return the related square index.
+            int square = strategy1.OwnMove();
+            if (game.Move(square))
+            {
+                // The Ai move is valid, update the board.
+                strategy2.OpponentMove(square);
+            }
+            else
+            {
+                throw new Exception();
+            }
+        }
+
         private void stopSingleGame()
         {
             foreach (Label square in squares)
@@ -501,11 +605,105 @@ namespace TicTacTheory
         /* Game streak methods. */
 
         /// <summary>
-        /// Start the single game.
+        /// Start the game streak.
         /// </summary>
         private void MultiGameStart()
         {
-            // TODO
+            if (aiPlayer1 == AI.Empty || aiPlayer2 == AI.Empty)
+            {
+                UpdateText(messageTestsLabel, "Please select both opponents.");
+            }
+            else if (matches == 0 || matches > 10000)
+            {
+                 UpdateText(messageTestsLabel,
+                    "Please insert a valid number " +
+                    "of matches (1-100000).");
+            }
+            else
+            {
+                UpdateText(messageTestsLabel, "");
+                multiGameStartAux();
+            }
+        }
+
+        /// <summary>
+        /// Start the matches streak with two AI opponents.
+        /// </summary>
+        private void multiGameStartAux()
+        {
+            // Init new data.
+            game = new TicTacToeCore();
+            p1Wins = 0;
+            p2Wins = 0;
+            draws = 0;
+            streakEnded = false;
+            int totalMatches = matches;
+            InitStatisticsDelegate initStats =
+                new InitStatisticsDelegate(InitStatistics);
+            this.Invoke(initStats, totalMatches);
+
+            strategy1 = initializeAI(aiPlayer1, -1);
+            strategy2 = initializeAI(aiPlayer2, 1);
+
+            // Get ready to show progress asynchronously
+            ShowProgressDelegate showProgress =
+              new ShowProgressDelegate(ShowProgress);
+
+            // Play the matches
+            while (matches > 0)
+            {
+                matches--;
+                UpdateText(messageTestsLabel, "Playing match # " + 
+                    (totalMatches - matches));
+                // Initialize a new game.
+                game = new TicTacToeCore();
+                strategy1.Reset();
+                strategy2.Reset();
+                int result = playSingleMatch(strategy1, strategy2);
+                // Show progress
+                this.Invoke(showProgress,
+                  new object[] { result });
+            }
+            streakEnded = true;
+            UpdateText(multiGameButton, "Reset");
+            // Update the results.
+            UpdateResultsDelegate updateResults =
+                new UpdateResultsDelegate(UpdateResults);
+            this.Invoke(updateResults, new object[] { totalMatches });
+        }
+
+        /// <summary>
+        /// Implements a single match among two AI player.
+        /// </summary>
+        private int playSingleMatch(
+            TicTacToeStrategy strategy1,
+            TicTacToeStrategy strategy2)
+        {
+            int turn = -1;
+            int result = 0;
+            do
+            {
+                aiMove(strategy1, strategy2, turn);
+                turn *= -1;
+            } while (!game.End());
+            switch (game.CheckForWinner())
+            {
+                case -2:
+                    p1Wins++;
+                    result = -2;
+                    break;
+                case 2:
+                    p2Wins++;
+                    result = 2;
+                    break;
+                case 1:
+                    draws++;
+                    result = 1;
+                    break;
+                default:
+                    break;
+            }
+            return result;
         }
 
         /// <summary>
@@ -625,13 +823,17 @@ namespace TicTacTheory
         {
             if (singleButtonState.Equals(ButtonState.Start))
             {
-                singleButtonState = switchButtonState(singleButtonState);
+                singleButtonState = switchButtonState(
+                    singleButtonState,
+                    singleGameButton);
                 singleGameThread = new Thread(new ThreadStart(SingleGameStart));
                 singleGameThread.Start();
             }
             else
             {
-                singleButtonState = switchButtonState(singleButtonState);
+                singleButtonState = switchButtonState(
+                    singleButtonState,
+                    singleGameButton);
                 singleGameThread.Abort();
                 resetSingleGame();
             }
@@ -724,14 +926,37 @@ namespace TicTacTheory
         {
             if (multiButtonState.Equals(ButtonState.Start))
             {
+                multiButtonState = switchButtonState(
+                    multiButtonState,
+                    multiGameButton);
                 multiGameThread = new Thread(new ThreadStart(MultiGameStart));
                 multiGameThread.Start();
+            }
+            else if (streakEnded)
+            {
+                resetMultiGame();
+                multiButtonState = switchButtonState(
+                    multiButtonState,
+                    multiGameButton);
             }
             else
             {
                 multiGameThread.Abort();
+                streakEnded = true;
+                UpdateText(messageTestsLabel, "");
+                UpdateText(multiGameButton, "Reset");
             }
-            multiButtonState = switchButtonState(multiButtonState);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void resetMultiGame()
+        {
+            UpdateText(messageTestsLabel, "");
+            player1Box.SelectedItem = null;
+            player2Box.SelectedItem = null;
+            numberOfMatchesBox.Value = 1;
         }
 
         /// <summary>
@@ -819,7 +1044,7 @@ namespace TicTacTheory
         /// </summary>
         private void numberOfMatchesBox_ValueChanged(object sender, EventArgs e)
         {
-            // TODO
+            matches = (int)numberOfMatchesBox.Value;
         }
 
     }
