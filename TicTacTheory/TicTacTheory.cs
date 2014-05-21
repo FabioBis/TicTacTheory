@@ -116,7 +116,8 @@ namespace TicTacTheory
         TicTacToeStrategy strategy2 { get; set; }
 
         // The number of matches to play.
-        int matches = 0;
+        int totalMatches = 0;
+        int matchesLeft = 0;
 
         // Statistics.
         int draws = 0;
@@ -175,18 +176,40 @@ namespace TicTacTheory
             {
                 case -2:
                     progressP1.PerformStep();
+                    //showProgress(progressP1, p1Wins);
                     break;
                 case 2:
                     progressP2.PerformStep();
+                    //showProgress(progressP2, p2Wins);
                     break;
                 case 1:
                     progressDraws.PerformStep();
+                    //showProgress(progressDraws, draws);
                     break;
                 default:
                     break;
             }
             totalGameProgress.PerformStep();
+            //showProgress(totalGameProgress, totalMatches - matchesLeft);
         }
+
+        //private void showProgress(ProgressBar progressBar, int progress)
+        //{
+        //    progressBar.Refresh();
+        //    using (Graphics gr = progressBar.CreateGraphics())
+        //    {
+        //        gr.DrawString(progress.ToString(),
+        //            SystemFonts.DefaultFont,
+        //            Brushes.Black,
+        //            new PointF(
+        //                progressBar.Width / 2 -
+        //                (gr.MeasureString(progress.ToString(),
+        //                SystemFonts.DefaultFont).Width / 2.0F),
+        //                progressBar.Height / 2 -
+        //                (gr.MeasureString(progress.ToString(),
+        //                SystemFonts.DefaultFont).Height / 2.0F)));
+        //    }
+        //}
 
         private void UpdateResults(int total)
         {
@@ -613,7 +636,7 @@ namespace TicTacTheory
             {
                 UpdateText(messageTestsLabel, "Please select both opponents.");
             }
-            else if (matches == 0 || matches > 10000)
+            else if (totalMatches == 0 || totalMatches > 10000)
             {
                  UpdateText(messageTestsLabel,
                     "Please insert a valid number " +
@@ -637,7 +660,7 @@ namespace TicTacTheory
             p2Wins = 0;
             draws = 0;
             streakEnded = false;
-            int totalMatches = matches;
+            matchesLeft = totalMatches;
             InitStatisticsDelegate initStats =
                 new InitStatisticsDelegate(InitStatistics);
             this.Invoke(initStats, totalMatches);
@@ -650,11 +673,9 @@ namespace TicTacTheory
               new ShowProgressDelegate(ShowProgress);
 
             // Play the matches
-            while (matches > 0)
+            while (matchesLeft > 0)
             {
-                matches--;
-                UpdateText(messageTestsLabel, "Playing match # " + 
-                    (totalMatches - matches));
+                matchesLeft--;
                 // Initialize a new game.
                 game = new TicTacToeCore();
                 strategy1.Reset();
@@ -669,7 +690,7 @@ namespace TicTacTheory
             // Update the results.
             UpdateResultsDelegate updateResults =
                 new UpdateResultsDelegate(UpdateResults);
-            this.Invoke(updateResults, new object[] { totalMatches });
+            this.Invoke(updateResults, new object[] { matchesLeft });
         }
 
         /// <summary>
@@ -1044,7 +1065,7 @@ namespace TicTacTheory
         /// </summary>
         private void numberOfMatchesBox_ValueChanged(object sender, EventArgs e)
         {
-            matches = (int)numberOfMatchesBox.Value;
+            totalMatches = (int)numberOfMatchesBox.Value;
         }
 
     }
