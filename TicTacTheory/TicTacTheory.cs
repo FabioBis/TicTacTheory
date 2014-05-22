@@ -193,11 +193,11 @@ namespace TicTacTheory
         {
             if (p1Wins > p2Wins)
             {
-                UpdateText(messageTestsLabel, player1 + " is the winner!");
+                UpdateText(messageTestsLabel, aiPlayer1.ToString() + " is the winner!");
             }
             else if (p2Wins > p1Wins)
             {
-                UpdateText(messageTestsLabel, player2 + " is the winner!");
+                UpdateText(messageTestsLabel, aiPlayer2.ToString() + " is the winner!");
             }
             else
             {
