@@ -213,11 +213,12 @@ namespace TicTacTheory
                 "----------------------\n" +
                 "Total matches played: " + (totalMatches - matchesLeft).ToString() +
                 ".\n" +
-                "Player 1 (" + player1 + ") won " + p1Wins.ToString() + " matches " +
-                "(" + ((float)p1Wins) / totalMatches * 100 + "%).\n" +
-                "Player 2 (" + player2 + ") won " + p2Wins.ToString() + " matches. " +
-                "(" + ((float)p2Wins) / totalMatches * 100 + "%).\n" +
-                "Total draws " + draws + " (" + ((float)draws) / totalMatches * 100 + "%)";
+                "Player 1 (" + aiPlayer1.ToString() + ") won " + p1Wins.ToString() +
+                " matches " + "(" + ((float)p1Wins) / totalMatches * 100 + "%).\n" +
+                "Player 2 (" + aiPlayer2.ToString() + ") won " + p2Wins.ToString() +
+                " matches " + "(" + ((float)p2Wins) / totalMatches * 100 + "%).\n" +
+                "Total draws " + draws +
+                " (" + ((float)draws) / totalMatches * 100 + "%).";
         }
 
         private void InitStatistics(int total)
@@ -471,10 +472,10 @@ namespace TicTacTheory
         }
 
         /// <summary>
-        /// Executes an AI move
+        /// Executes an AI move and update the opponent AI strategy.
         /// </summary>
-        /// <param name="strategy1"></param>
-        /// <param name="strategy2"></param>
+        /// <param name="strategy1">The AI who moves.</param>
+        /// <param name="strategy2">The opponent AI.</param>
         private void aiMove(
             TicTacToeStrategy strategy1,
             TicTacToeStrategy strategy2)
@@ -625,16 +626,8 @@ namespace TicTacTheory
         /// </summary>
         private void MultiGameStart()
         {
-            UpdateText(messageTestsLabel, "");
-            multiGameStartAux();
-        }
-
-        /// <summary>
-        /// Start the matches streak with two AI opponents.
-        /// </summary>
-        private void multiGameStartAux()
-        {
             // Init new data.
+            UpdateText(messageTestsLabel, "");
             game = new TicTacToeCore();
             p1Wins = 0;
             p2Wins = 0;
@@ -853,26 +846,24 @@ namespace TicTacTheory
                 switch (opponent)
                 {
                     case Opponent.Manual:
-                        descriptionLabel.Text = "Player VS Player mode. ";
+                        UpdateText(descriptionLabel, "Player VS Player mode. ");
                         break;
                     case Opponent.Sheldon:
-                        descriptionLabel.Text = "You know, Sheldon is too"
+                        UpdateText(descriptionLabel, "You know, Sheldon is too"
                             + " smart for anyone. You can just draw a match"
-                            + " against him, if You are good enough! ";
+                            + " against him, if You are good enough! ");
                         break;
                     case Opponent.Penny:
-                        descriptionLabel.Text = "Ok, Penny is not the best"
-                        + " player, but don't underestimate her. ";
+                        UpdateText(descriptionLabel, "Ok, Penny is not the best"
+                        + " player, but don't underestimate her. ");
                         break;
                     case Opponent.Stuart:
-                        descriptionLabel.Text = "Stuart is not the smarter"
-                        + " player, more aggressive than Penny, but still beatable. ";
+                        UpdateText(descriptionLabel, "Stuart is not the smarter"
+                        + " player, more aggressive than Penny, but still beatable. ");
                         break;
                     default:
-                        messageLabel.Font = new Font(messageLabel.Font.Name,
-                             9, messageLabel.Font.Style, messageLabel.Font.Unit);
-                        messageLabel.Text = "A problem occoured,"
-                        + " please chose the opponent again";
+                        UpdateText(messageLabel, "A problem occoured,"
+                        + " please chose the opponent again");
                         break;
                 }
             }
@@ -881,8 +872,8 @@ namespace TicTacTheory
                 opponent = Opponent.Empty;
                 messageLabel.Font = new Font(messageLabel.Font.Name,
                             9, messageLabel.Font.Style, messageLabel.Font.Unit);
-                messageLabel.Text = "A problem occoured, please choose"
-                + " the opponent again.";
+                UpdateText(messageLabel, "A problem occoured, please choose" +
+                    " the opponent again.");
             }
         }
 
@@ -904,10 +895,9 @@ namespace TicTacTheory
                             break;
                         default:
                             first = First.Empty;
-                            messageLabel.Font = new Font(messageLabel.Font.Name,
-                                9, messageLabel.Font.Style, messageLabel.Font.Unit);
-                            messageLabel.Text = "A problem occoured, please choose"
-                            + " the first to move again.";
+                            UpdateText(messageLabel, 
+                                "A problem occoured, please choose" +
+                                " the first to move again.");
                             break;
                     }
                 }
@@ -983,10 +973,8 @@ namespace TicTacTheory
         {
             UpdateText(messageTestsLabel, "");
             player1Box.SelectedItem = null;
-            player1 = "";
             aiPlayer1 = AI.Empty;
             player2Box.SelectedItem = null;
-            player2 = "";
             aiPlayer2 = AI.Empty;
             numberOfMatchesBox.Value = 1;
         }
@@ -1004,29 +992,22 @@ namespace TicTacTheory
                     switch (aiPlayer1)
                     {
                         case AI.Sheldon:
-                            player1 = "Player 1 (Sheldon)";
                             break;
                         case AI.Penny:
-                            player1 = "Player 1 (Penny)";
                             break;
                         case AI.Stuart:
-                            player1 = "Player 1 (Stuart)";
                             break;
                         default:
-                            messageLabel.Font = new Font(messageLabel.Font.Name,
-                                 9, messageLabel.Font.Style, messageLabel.Font.Unit);
-                            messageLabel.Text = "A problem occoured,"
-                            + " please chose the opponent again";
+                            UpdateText(messageLabel, "A problem occoured,"
+                            + " please chose the opponent again");
                             break;
                     }
                 }
                 else
                 {
                     aiPlayer1 = AI.Empty;
-                    messageLabel.Font = new Font(messageLabel.Font.Name,
-                                9, messageLabel.Font.Style, messageLabel.Font.Unit);
-                    messageLabel.Text = "A problem occoured, please choose"
-                    + " the opponent again.";
+                    UpdateText(messageLabel, "A problem occoured,"
+                            + " please chose the opponent again");
                 }
             }
         }
@@ -1044,29 +1025,22 @@ namespace TicTacTheory
                     switch (aiPlayer2)
                     {
                         case AI.Sheldon:
-                            player2 = "Player 2 (Sheldon)";
                             break;
                         case AI.Penny:
-                            player2 = "Player 2 (Penny)";
                             break;
                         case AI.Stuart:
-                            player2 = "Player 2 (Stuart)";
                             break;
                         default:
-                            messageLabel.Font = new Font(messageLabel.Font.Name,
-                                 9, messageLabel.Font.Style, messageLabel.Font.Unit);
-                            messageLabel.Text = "A problem occoured,"
-                            + " please chose the opponent again";
+                            UpdateText(messageLabel, "A problem occoured,"
+                            + " please chose the opponent again");
                             break;
                     }
                 }
                 else
                 {
                     aiPlayer2 = AI.Empty;
-                    messageLabel.Font = new Font(messageLabel.Font.Name,
-                                9, messageLabel.Font.Style, messageLabel.Font.Unit);
-                    messageLabel.Text = "A problem occoured, please choose"
-                    + " the opponent again.";
+                    UpdateText(messageLabel, "A problem occoured,"
+                            + " please chose the opponent again");
                 }
             }
         }
