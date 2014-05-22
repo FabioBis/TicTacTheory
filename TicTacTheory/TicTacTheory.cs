@@ -114,7 +114,7 @@ namespace TicTacTheory
         // The AI strategies.
         TicTacToeStrategy strategy1 { get; set; }
         TicTacToeStrategy strategy2 { get; set; }
-
+        
         // The number of matches to play.
         int totalMatches = 0;
         int matchesLeft = 0;
@@ -176,40 +176,18 @@ namespace TicTacTheory
             {
                 case -2:
                     progressP1.PerformStep();
-                    //showProgress(progressP1, p1Wins);
                     break;
                 case 2:
                     progressP2.PerformStep();
-                    //showProgress(progressP2, p2Wins);
                     break;
                 case 1:
                     progressDraws.PerformStep();
-                    //showProgress(progressDraws, draws);
                     break;
                 default:
                     break;
             }
             totalGameProgress.PerformStep();
-            //showProgress(totalGameProgress, totalMatches - matchesLeft);
         }
-
-        //private void showProgress(ProgressBar progressBar, int progress)
-        //{
-        //    progressBar.Refresh();
-        //    using (Graphics gr = progressBar.CreateGraphics())
-        //    {
-        //        gr.DrawString(progress.ToString(),
-        //            SystemFonts.DefaultFont,
-        //            Brushes.Black,
-        //            new PointF(
-        //                progressBar.Width / 2 -
-        //                (gr.MeasureString(progress.ToString(),
-        //                SystemFonts.DefaultFont).Width / 2.0F),
-        //                progressBar.Height / 2 -
-        //                (gr.MeasureString(progress.ToString(),
-        //                SystemFonts.DefaultFont).Height / 2.0F)));
-        //    }
-        //}
 
         private void UpdateResults(int total)
         {
@@ -225,6 +203,21 @@ namespace TicTacTheory
             {
                 UpdateText(messageTestsLabel, "The competition is a draw!");
             }
+            UpdateText(statisticsLabel, printStatistics());
+        }
+
+        private string printStatistics()
+        {
+            return
+                "Game Streak Statistics\n" +
+                "----------------------\n" +
+                "Total matches played: " + (totalMatches - matchesLeft).ToString() +
+                ".\n" +
+                "Player 1 (" + player1 + ") won " + p1Wins.ToString() + " matches " +
+                "(" + ((float)p1Wins) / totalMatches * 100 + "%).\n" +
+                "Player 2 (" + player2 + ") won " + p2Wins.ToString() + " matches. " +
+                "(" + ((float)p2Wins) / totalMatches * 100 + "%).\n" +
+                "Total draws " + draws + " (" + ((float)draws) / totalMatches * 100 + "%)";
         }
 
         private void InitStatistics(int total)
@@ -632,21 +625,8 @@ namespace TicTacTheory
         /// </summary>
         private void MultiGameStart()
         {
-            if (aiPlayer1 == AI.Empty || aiPlayer2 == AI.Empty)
-            {
-                UpdateText(messageTestsLabel, "Please select both opponents.");
-            }
-            else if (totalMatches == 0 || totalMatches > 10000)
-            {
-                 UpdateText(messageTestsLabel,
-                    "Please insert a valid number " +
-                    "of matches (1-100000).");
-            }
-            else
-            {
-                UpdateText(messageTestsLabel, "");
-                multiGameStartAux();
-            }
+            UpdateText(messageTestsLabel, "");
+            multiGameStartAux();
         }
 
         /// <summary>
@@ -947,15 +927,29 @@ namespace TicTacTheory
         {
             if (multiButtonState.Equals(ButtonState.Start))
             {
-                multiButtonState = switchButtonState(
-                    multiButtonState,
-                    multiGameButton);
-                multiGameThread = new Thread(new ThreadStart(MultiGameStart));
-                multiGameThread.Start();
+                if (aiPlayer1 == AI.Empty || aiPlayer2 == AI.Empty)
+                {
+                    UpdateText(messageTestsLabel, "Please select both opponents.");
+                }
+                else if (totalMatches == 0 || totalMatches > 100000)
+                {
+                    UpdateText(messageTestsLabel,
+                       "Please insert a valid number " +
+                       "of matches (1-100000).");
+                }
+                else
+                {
+                    multiButtonState = switchButtonState(   
+                        multiButtonState, multiGameButton);
+                    multiGameThread = new Thread(new ThreadStart(MultiGameStart));
+                    multiGameThread.Start();
+                }
+               
             }
             else if (streakEnded)
             {
                 resetMultiGame();
+                resetMultiGameStats();
                 multiButtonState = switchButtonState(
                     multiButtonState,
                     multiGameButton);
@@ -970,13 +964,30 @@ namespace TicTacTheory
         }
 
         /// <summary>
-        /// 
+        /// Resets game streak mode statistics.
+        /// </summary>
+        private void resetMultiGameStats()
+        {
+            totalGameProgress.Value = 0;
+            progressP1.Value = 0;
+            progressP2.Value = 0;
+            progressDraws.Value = 0;
+
+            UpdateText(statisticsLabel, "");
+        }
+
+        /// <summary>
+        /// Resets game streak mode data. 
         /// </summary>
         private void resetMultiGame()
         {
             UpdateText(messageTestsLabel, "");
             player1Box.SelectedItem = null;
+            player1 = "";
+            aiPlayer1 = AI.Empty;
             player2Box.SelectedItem = null;
+            player2 = "";
+            aiPlayer2 = AI.Empty;
             numberOfMatchesBox.Value = 1;
         }
 

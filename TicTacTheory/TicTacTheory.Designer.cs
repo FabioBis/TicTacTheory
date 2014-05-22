@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TicTacTheory));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.singleGamePage = new System.Windows.Forms.TabPage();
             this.controlPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -71,8 +68,8 @@
             this.labelDraws = new System.Windows.Forms.Label();
             this.progressP1 = new System.Windows.Forms.ProgressBar();
             this.progressP2 = new System.Windows.Forms.ProgressBar();
-            this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.messageTestsLabel = new System.Windows.Forms.Label();
+            this.statisticsLabel = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.singleGamePage.SuspendLayout();
             this.controlPanel.SuspendLayout();
@@ -81,7 +78,6 @@
             this.testAIPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfMatchesBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -247,7 +243,7 @@
             this.gameBoardPanel.ColumnCount = 3;
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
+            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.gameBoardPanel.Controls.Add(this.square8, 2, 2);
             this.gameBoardPanel.Controls.Add(this.square7, 1, 2);
             this.gameBoardPanel.Controls.Add(this.square6, 0, 2);
@@ -273,7 +269,7 @@
             this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square8.Location = new System.Drawing.Point(212, 209);
             this.square8.Name = "square8";
-            this.square8.Size = new System.Drawing.Size(121, 100);
+            this.square8.Size = new System.Drawing.Size(136, 100);
             this.square8.TabIndex = 8;
             this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square8.Click += new System.EventHandler(this.square_Click);
@@ -309,7 +305,7 @@
             this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square5.Location = new System.Drawing.Point(212, 106);
             this.square5.Name = "square5";
-            this.square5.Size = new System.Drawing.Size(121, 100);
+            this.square5.Size = new System.Drawing.Size(136, 100);
             this.square5.TabIndex = 5;
             this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square5.Click += new System.EventHandler(this.square_Click);
@@ -345,7 +341,7 @@
             this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square2.Location = new System.Drawing.Point(212, 3);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(121, 100);
+            this.square2.Size = new System.Drawing.Size(136, 100);
             this.square2.TabIndex = 2;
             this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square2.Click += new System.EventHandler(this.square_Click);
@@ -407,8 +403,8 @@
             this.tableLayoutPanel1.Controls.Add(this.labelDraws, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.progressP1, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.progressP2, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.chart, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.messageTestsLabel, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.statisticsLabel, 0, 11);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 12;
@@ -636,26 +632,6 @@
             this.progressP2.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressP2.TabIndex = 14;
             // 
-            // chart
-            // 
-            this.chart.BackColor = System.Drawing.Color.Transparent;
-            chartArea4.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea4);
-            this.tableLayoutPanel1.SetColumnSpan(this.chart, 3);
-            this.chart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend4.Name = "Legend1";
-            this.chart.Legends.Add(legend4);
-            this.chart.Location = new System.Drawing.Point(3, 363);
-            this.chart.Name = "chart";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart.Series.Add(series4);
-            this.chart.Size = new System.Drawing.Size(312, 169);
-            this.chart.TabIndex = 16;
-            this.chart.Text = "chart1";
-            // 
             // messageTestsLabel
             // 
             this.messageTestsLabel.AutoSize = true;
@@ -668,6 +644,19 @@
             this.messageTestsLabel.Size = new System.Drawing.Size(312, 30);
             this.messageTestsLabel.TabIndex = 17;
             this.messageTestsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // statisticsLabel
+            // 
+            this.statisticsLabel.AutoSize = true;
+            this.statisticsLabel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.tableLayoutPanel1.SetColumnSpan(this.statisticsLabel, 3);
+            this.statisticsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statisticsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statisticsLabel.Location = new System.Drawing.Point(3, 370);
+            this.statisticsLabel.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.statisticsLabel.Name = "statisticsLabel";
+            this.statisticsLabel.Size = new System.Drawing.Size(312, 155);
+            this.statisticsLabel.TabIndex = 18;
             // 
             // TicTacTheory
             // 
@@ -692,7 +681,6 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberOfMatchesBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -721,6 +709,7 @@
         private System.Windows.Forms.ComboBox player1Box;
         private System.Windows.Forms.NumericUpDown numberOfMatchesBox;
         private System.Windows.Forms.Button multiGameButton;
+        //private System.Windows.Forms.ProgressBar totalGameProgress;
         private System.Windows.Forms.ProgressBar totalGameProgress;
         private System.Windows.Forms.Label labelTotalProgress;
         private System.Windows.Forms.ProgressBar progressDraws;
@@ -729,7 +718,6 @@
         private System.Windows.Forms.Label labelDraws;
         private System.Windows.Forms.ProgressBar progressP1;
         private System.Windows.Forms.ProgressBar progressP2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart;
         private System.Windows.Forms.Label square0;
         private System.Windows.Forms.Label square2;
         private System.Windows.Forms.Label square1;
@@ -740,6 +728,7 @@
         private System.Windows.Forms.Label square4;
         private System.Windows.Forms.Label square3;
         private System.Windows.Forms.Label messageTestsLabel;
+        private System.Windows.Forms.Label statisticsLabel;
     }
 }
 
