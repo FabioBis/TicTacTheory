@@ -416,15 +416,13 @@ namespace TicTacTheory
         /// </summary>
         private void aiMove()
         {
-            messageLabel.Font = new Font(messageLabel.Font.Name,
-                            15, messageLabel.Font.Style, messageLabel.Font.Unit);
             // The AI make his move, return the related square index.
             int square = strategy.OwnMove();
             if (game.Move(square))
             {
                 // The Ai move is valid, update the board.
                 Label label = indexToLabel(square);
-                label.Text = playerSymbol();
+                UpdateText(label, playerSymbol());
                 switch (game.CheckForWinner())
                 {
                     case -2:
@@ -738,10 +736,8 @@ namespace TicTacTheory
             }
             else if (game.Move(square))
             {
-                messageLabel.Font = new Font(messageLabel.Font.Name,
-                                15, messageLabel.Font.Style, messageLabel.Font.Unit);
                 // The move is valid, set the symbol on the square.
-                clickedLabel.Text = playerSymbol();
+                UpdateText(clickedLabel, playerSymbol());
                 // Check for a winner.
                 switch (game.CheckForWinner())
                 {
@@ -785,8 +781,6 @@ namespace TicTacTheory
             }
             else
             {
-                messageLabel.Font = new Font(messageLabel.Font.Name,
-                                9, messageLabel.Font.Style, messageLabel.Font.Unit);
                 UpdateText(messageLabel, "Occupied square, try again!");
             }
             return;
@@ -870,8 +864,6 @@ namespace TicTacTheory
             else
             {
                 opponent = Opponent.Empty;
-                messageLabel.Font = new Font(messageLabel.Font.Name,
-                            9, messageLabel.Font.Style, messageLabel.Font.Unit);
                 UpdateText(messageLabel, "A problem occoured, please choose" +
                     " the opponent again.");
             }
