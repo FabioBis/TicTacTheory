@@ -79,11 +79,11 @@ namespace TicTacTheory
         delegate void InitStatisticsDelegate(int total);
         delegate void UpdateMaximumDelegate(ProgressBar ctl, int total);
 
-        // The game core.
-        private TicTacToeCore game;
-
-
+        
         /* Single Game Mode Data. */
+
+        // The single game core.
+        static TicTacToeCore singleGame;
 
         // The players names.
         string player1;
@@ -106,6 +106,9 @@ namespace TicTacTheory
 
 
         /* Multi Matches Mode Data. */
+
+        // The streak game core.
+        static ThreadLocal<TicTacToeCore> multiGame;
 
         // The choosen opponents.
         AI aiPlayer1 = AI.Empty;
@@ -154,7 +157,6 @@ namespace TicTacTheory
                 ctl.Text = text;
             }
         }
-
 
         private void UpdateEnabled(Control ctl, bool p)
         {
@@ -208,17 +210,18 @@ namespace TicTacTheory
 
         private string printStatistics()
         {
+            int matchesPlayed = totalMatches - matchesLeft;
             return
                 "Game Streak Statistics\n" +
                 "----------------------\n" +
-                "Total matches played: " + (totalMatches - matchesLeft).ToString() +
+                "Total matches played: " + matchesPlayed.ToString() +
                 ".\n" +
                 "Player 1 (" + aiPlayer1.ToString() + ") won " + p1Wins.ToString() +
-                " matches " + "(" + ((float)p1Wins) / totalMatches * 100 + "%).\n" +
+                " matches " + "(" + ((float)p1Wins) / matchesPlayed * 100 + "%).\n" +
                 "Player 2 (" + aiPlayer2.ToString() + ") won " + p2Wins.ToString() +
-                " matches " + "(" + ((float)p2Wins) / totalMatches * 100 + "%).\n" +
+                " matches " + "(" + ((float)p2Wins) / matchesPlayed * 100 + "%).\n" +
                 "Total draws " + draws +
-                " (" + ((float)draws) / totalMatches * 100 + "%).";
+                " (" + ((float)draws) / matchesPlayed * 100 + "%).";
         }
 
         private void InitStatistics(int total)
@@ -276,7 +279,7 @@ namespace TicTacTheory
         /// <returns>A string representing the current player.</returns>
         private string playerSymbol()
         {
-            if (game.GetTurn() == -1)
+            if (singleGame.GetTurn() == -1)
             {
                 // Turn -1 mean that the next player will be
                 // the first, so the current player is the second.
@@ -295,7 +298,8 @@ namespace TicTacTheory
         /// </summary>
         private void SingleGameStart()
         {
-            game = new TicTacToeCore();
+            //singleGame = new ThreadLocal<TicTacToeCore>(() => new TicTacToeCore());
+            singleGame = new TicTacToeCore();
             foreach (Label square in squares)
             {
                 UpdateEnabled(square, true);
@@ -343,13 +347,13 @@ namespace TicTacTheory
                     // Player VS player, nothing to load.
                     break;
                 case Opponent.Sheldon:
-                    initSheldonAI(square);
+                    initSheldonAI(square, singleGame);
                     break;
                 case Opponent.Penny:
-                    initPennyAI();
+                    initPennyAI(singleGame);
                     break;
                 case Opponent.Stuart:
-                    initStuartAI();
+                    initStuartAI(singleGame);
                     break;
                 case Opponent.Empty:
                     // Nothing to load.
@@ -365,7 +369,7 @@ namespace TicTacTheory
         /// Sheldon expoit MiniMax search strategy.
         /// </summary>
         /// <param name="square"></param>
-        private void initSheldonAI(int square)
+        private void initSheldonAI(int square, TicTacToeCore game)
         {
             if (square != -1)
             {
@@ -382,7 +386,7 @@ namespace TicTacTheory
         /// <summary>
         /// Initialize the AI for Penny, a suboptimal player.
         /// </summary>
-        private void initPennyAI()
+        private void initPennyAI(TicTacToeCore game)
         {
             if (first.Equals(First.Opponent))
             {
@@ -398,7 +402,7 @@ namespace TicTacTheory
         /// <summary>
         /// Initialize the AI for Stuart, a suboptimal player.
         /// </summary>
-        private void initStuartAI()
+        private void initStuartAI(TicTacToeCore game)
         {
             if (first.Equals(First.Opponent))
             {
@@ -418,12 +422,12 @@ namespace TicTacTheory
         {
             // The AI make his move, return the related square index.
             int square = strategy.OwnMove();
-            if (game.Move(square))
+            if (singleGame.Move(square))
             {
                 // The Ai move is valid, update the board.
                 Label label = indexToLabel(square);
                 UpdateText(label, playerSymbol());
-                switch (game.CheckForWinner())
+                switch (singleGame.CheckForWinner())
                 {
                     case -2:
                         UpdateText(messageLabel, player1 + " won!");
@@ -480,7 +484,7 @@ namespace TicTacTheory
         {
             // The AI make his move, return the related square index.
             int square = strategy1.OwnMove();
-            if (game.Move(square))
+            if (multiGame.Value.Move(square))
             {
                 // The Ai move is valid, update the board.
                 strategy2.OpponentMove(square);
@@ -626,7 +630,7 @@ namespace TicTacTheory
         {
             // Init new data.
             UpdateText(messageTestsLabel, "");
-            game = new TicTacToeCore();
+            multiGame = new ThreadLocal<TicTacToeCore>(() => new TicTacToeCore());
             p1Wins = 0;
             p2Wins = 0;
             draws = 0;
@@ -636,8 +640,8 @@ namespace TicTacTheory
                 new InitStatisticsDelegate(InitStatistics);
             this.Invoke(initStats, totalMatches);
 
-            strategy1 = initializeAI(aiPlayer1, -1);
-            strategy2 = initializeAI(aiPlayer2, 1);
+            strategy1 = initializeAI(aiPlayer1, -1, multiGame.Value);
+            strategy2 = initializeAI(aiPlayer2, 1, multiGame.Value);
 
             // Get ready to show progress asynchronously
             ShowProgressDelegate showProgress =
@@ -648,7 +652,7 @@ namespace TicTacTheory
             {
                 matchesLeft--;
                 // Initialize a new game.
-                game = new TicTacToeCore();
+                multiGame = new ThreadLocal<TicTacToeCore>(() => new TicTacToeCore());
                 strategy1.Reset();
                 strategy2.Reset();
                 int result = playSingleMatch(strategy1, strategy2);
@@ -677,8 +681,8 @@ namespace TicTacTheory
             {
                 aiMove(strategy1, strategy2, turn);
                 turn *= -1;
-            } while (!game.End());
-            switch (game.CheckForWinner())
+            } while (!multiGame.Value.End());
+            switch (multiGame.Value.CheckForWinner())
             {
                 case -2:
                     p1Wins++;
@@ -701,7 +705,10 @@ namespace TicTacTheory
         /// <summary>
         /// Initialize the AI strategy for the AI vs AI game.
         /// </summary>
-        private TicTacToeStrategy initializeAI(AI aiPlayer, int turn)
+        private TicTacToeStrategy initializeAI(
+            AI aiPlayer,
+            int turn,
+            TicTacToeCore game)
         {
             TicTacToeStrategy result = null;
             switch (aiPlayer)
@@ -710,10 +717,12 @@ namespace TicTacTheory
                     result = new TicTacToeMinMaxStrategy(turn);
                     break;
                 case AI.Penny:
-                    result = new TicTacToeSimpleStrategy(game.GetBoard(), turn);
+                    result = new TicTacToeSimpleStrategy(
+                        game.GetBoard(), turn);
                     break;
                 case AI.Stuart:
-                    result = new TicTacToeBetterSimpleStrategy(game.GetBoard(), turn);
+                    result = new TicTacToeBetterSimpleStrategy(
+                        game.GetBoard(), turn);
                     break;
                 default:
                     break;
@@ -734,12 +743,12 @@ namespace TicTacTheory
             {
                 MessageBox.Show("Error", "An Error occourred! We're Sorry...");
             }
-            else if (game.Move(square))
+            else if (singleGame.Move(square))
             {
                 // The move is valid, set the symbol on the square.
                 UpdateText(clickedLabel, playerSymbol());
                 // Check for a winner.
-                switch (game.CheckForWinner())
+                switch (singleGame.CheckForWinner())
                 {
                     case -2:
                         UpdateText(messageLabel, player1 + " won!");
@@ -794,7 +803,7 @@ namespace TicTacTheory
         /// <returns>A display string representing the current player.</returns>
         private string playerTurn()
         {
-            if (game.GetTurn() == -1)
+            if (singleGame.GetTurn() == -1)
             {
                 return "1";
             }
@@ -822,8 +831,8 @@ namespace TicTacTheory
                 singleButtonState = switchButtonState(
                     singleButtonState,
                     singleGameButton);
-                singleGameThread.Abort();
                 resetSingleGame();
+                singleGameThread.Abort();
             }
         }
 
@@ -907,17 +916,18 @@ namespace TicTacTheory
         /// </summary>
         private void multiGameButton_Click(object sender, EventArgs e)
         {
+            totalMatches = (int)numberOfMatchesBox.Value;
             if (multiButtonState.Equals(ButtonState.Start))
             {
                 if (aiPlayer1 == AI.Empty || aiPlayer2 == AI.Empty)
                 {
                     UpdateText(messageTestsLabel, "Please select both opponents.");
                 }
-                else if (totalMatches == 0 || totalMatches > 100000)
+                else if (totalMatches == 0 || totalMatches > 10000000)
                 {
                     UpdateText(messageTestsLabel,
                        "Please insert a valid number " +
-                       "of matches (1-100000).");
+                       "of matches (1-10000000).");
                 }
                 else
                 {
@@ -938,6 +948,11 @@ namespace TicTacTheory
             }
             else
             {
+
+                // Update the results.
+                UpdateResultsDelegate updateResults =
+                    new UpdateResultsDelegate(UpdateResults);
+                this.Invoke(updateResults, new object[] { matchesLeft });
                 multiGameThread.Abort();
                 streakEnded = true;
                 UpdateText(messageTestsLabel, "");
@@ -1036,14 +1051,5 @@ namespace TicTacTheory
                 }
             }
         }
-
-        /// <summary>
-        /// The user selects the number of match to be played.
-        /// </summary>
-        private void numberOfMatchesBox_ValueChanged(object sender, EventArgs e)
-        {
-            totalMatches = (int)numberOfMatchesBox.Value;
-        }
-
     }
 }

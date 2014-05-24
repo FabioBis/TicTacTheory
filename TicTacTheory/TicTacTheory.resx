@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="explainMultiGameBox.Text" xml:space="preserve">
-    <value>The "Test AI" feature of TicTacTheory let You run a streak of matches involving two AI player.
+    <value>The "Test AI" feature of TicTacTheory let You run a streak of matches involving two AI players.
  
-You have to select two AI player and the number of matches to be played. The matches will not be displayed on the board but at the end of the streak the game staistics will be displayed.</value>
+You have to select two AI players and the number of matches to be played. The matches will not be displayed on the board but at the end of the streak the game staistics will be displayed.</value>
   </data>
 </root>

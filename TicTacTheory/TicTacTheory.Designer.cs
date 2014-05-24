@@ -253,7 +253,7 @@
             this.gameBoardPanel.Controls.Add(this.square2, 2, 0);
             this.gameBoardPanel.Controls.Add(this.square1, 1, 0);
             this.gameBoardPanel.Controls.Add(this.square0, 0, 0);
-            this.gameBoardPanel.Location = new System.Drawing.Point(8, 133);
+            this.gameBoardPanel.Location = new System.Drawing.Point(10, 133);
             this.gameBoardPanel.Name = "gameBoardPanel";
             this.gameBoardPanel.RowCount = 3;
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
@@ -523,7 +523,7 @@
             // 
             this.numberOfMatchesBox.Location = new System.Drawing.Point(215, 178);
             this.numberOfMatchesBox.Maximum = new decimal(new int[] {
-            100000,
+            10000000,
             0,
             0,
             0});
@@ -540,7 +540,6 @@
             0,
             0,
             0});
-            this.numberOfMatchesBox.ValueChanged += new System.EventHandler(this.numberOfMatchesBox_ValueChanged);
             // 
             // multiGameButton
             // 
