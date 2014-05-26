@@ -243,7 +243,7 @@
             this.gameBoardPanel.ColumnCount = 3;
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.gameBoardPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 103F));
             this.gameBoardPanel.Controls.Add(this.square8, 2, 2);
             this.gameBoardPanel.Controls.Add(this.square7, 1, 2);
             this.gameBoardPanel.Controls.Add(this.square6, 0, 2);
@@ -253,13 +253,13 @@
             this.gameBoardPanel.Controls.Add(this.square2, 2, 0);
             this.gameBoardPanel.Controls.Add(this.square1, 1, 0);
             this.gameBoardPanel.Controls.Add(this.square0, 0, 0);
-            this.gameBoardPanel.Location = new System.Drawing.Point(10, 133);
+            this.gameBoardPanel.Location = new System.Drawing.Point(6, 132);
             this.gameBoardPanel.Name = "gameBoardPanel";
             this.gameBoardPanel.RowCount = 3;
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.gameBoardPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.gameBoardPanel.Size = new System.Drawing.Size(316, 312);
+            this.gameBoardPanel.Size = new System.Drawing.Size(312, 312);
             this.gameBoardPanel.TabIndex = 0;
             // 
             // square8
@@ -269,7 +269,7 @@
             this.square8.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square8.Location = new System.Drawing.Point(212, 209);
             this.square8.Name = "square8";
-            this.square8.Size = new System.Drawing.Size(98, 100);
+            this.square8.Size = new System.Drawing.Size(97, 100);
             this.square8.TabIndex = 8;
             this.square8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square8.Click += new System.EventHandler(this.square_Click);
@@ -305,7 +305,7 @@
             this.square5.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square5.Location = new System.Drawing.Point(212, 106);
             this.square5.Name = "square5";
-            this.square5.Size = new System.Drawing.Size(98, 100);
+            this.square5.Size = new System.Drawing.Size(97, 100);
             this.square5.TabIndex = 5;
             this.square5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square5.Click += new System.EventHandler(this.square_Click);
@@ -341,7 +341,7 @@
             this.square2.Font = new System.Drawing.Font("Verdana", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.square2.Location = new System.Drawing.Point(212, 3);
             this.square2.Name = "square2";
-            this.square2.Size = new System.Drawing.Size(98, 100);
+            this.square2.Size = new System.Drawing.Size(97, 100);
             this.square2.TabIndex = 2;
             this.square2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.square2.Click += new System.EventHandler(this.square_Click);
