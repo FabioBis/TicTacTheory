@@ -8,25 +8,26 @@ Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 ; Default installation folder.
 InstallDir "$PROGRAMFILES\BoardGameTheory\TicTacTheory"
 
+Section "Dummy Section" SecDummy
 ; Define output path.
 SetOutPath $INSTDIR
 
+
 ; Get installation folder from registry if available.
-InstallDirRegKey HKLM
+; InstallDirRegKey HKLM
 
 ; Specify files to go in output path.
-File ../bin/Release/TicTacTheory.exe
-File ../bin/Release/BoardGameCore.dll
-File ../bin/Release/SharpSearch.dll
-File ../bin/Release/TicTacTheory.pdb
-File ../bin/Release/BoardGameCore.pdb
-File ../bin/Release/SharpShearch.pdb
+File "..\bin\Release\TicTacTheory.exe"
+File "..\bin\Release\BoardGameCore.dll"
+File "..\bin\Release\SharpSearch.dll"
+File "..\bin\Release\TicTacTheory.pdb"
+File "..\bin\Release\BoardGameCore.pdb"
+File "..\bin\Release\SharpSearch.pdb"
+
+SectionEnd
 
 ShowInstDetails show
 ShowUnInstDetails show
-
-SetCompressor /SOLID lzma
-SetCompressorDictSize 12
 
 ; Request application privileges for Windows Vista.
 RequestExecutionLevel user
