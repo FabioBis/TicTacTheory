@@ -8,11 +8,14 @@ RequestExecutionLevel admin
 ; Default installation folder.
 InstallDir "$PROGRAMFILES\BoardGameTheory\TicTacTheory"
 
+; License file: rtf or txt file.
+LicenseData "license.rtf"
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile ${SETUP_NAME}
 
 !include LogicLib.nsh
 
+page license
 page directory
 page instfiles
 
