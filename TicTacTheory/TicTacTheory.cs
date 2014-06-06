@@ -126,7 +126,7 @@ namespace TicTacTheory
         bool firstMove = true;
 
         // The AI strategy.
-        TicTacToeStrategy strategy { get; set; }
+        BoardGameStrategy strategy { get; set; }
 
 
         /* Multi Matches Mode Data. */
@@ -139,8 +139,8 @@ namespace TicTacTheory
         AI aiPlayer2 = AI.Empty;
 
         // The AI strategies.
-        TicTacToeStrategy strategy1 { get; set; }
-        TicTacToeStrategy strategy2 { get; set; }
+        BoardGameStrategy strategy1 { get; set; }
+        BoardGameStrategy strategy2 { get; set; }
         
         // The number of matches to play.
         int totalMatches = 0;
@@ -483,8 +483,8 @@ namespace TicTacTheory
         /// Auxiliary method to alternate the AI moves within a single game.
         /// </summary>
         private void aiMove(
-            TicTacToeStrategy strategy1,
-            TicTacToeStrategy strategy2,
+            BoardGameStrategy strategy1,
+            BoardGameStrategy strategy2,
             int turn)
         {
             if (turn == -1)
@@ -503,8 +503,8 @@ namespace TicTacTheory
         /// <param name="strategy1">The AI who moves.</param>
         /// <param name="strategy2">The opponent AI.</param>
         private void aiMove(
-            TicTacToeStrategy strategy1,
-            TicTacToeStrategy strategy2)
+            BoardGameStrategy strategy1,
+            BoardGameStrategy strategy2)
         {
             // The AI make his move, return the related square index.
             int square = strategy1.OwnMove();
@@ -696,8 +696,8 @@ namespace TicTacTheory
         /// Implements a single match among two AI player.
         /// </summary>
         private int playSingleMatch(
-            TicTacToeStrategy strategy1,
-            TicTacToeStrategy strategy2)
+            BoardGameStrategy strategy1,
+            BoardGameStrategy strategy2)
         {
             int turn = -1;
             int result = 0;
@@ -729,12 +729,12 @@ namespace TicTacTheory
         /// <summary>
         /// Initialize the AI strategy for the AI vs AI game.
         /// </summary>
-        private TicTacToeStrategy initializeAI(
+        private BoardGameStrategy initializeAI(
             AI aiPlayer,
             int turn,
             TicTacToeCore game)
         {
-            TicTacToeStrategy result = null;
+            BoardGameStrategy result = null;
             switch (aiPlayer)
             {
                 case AI.Sheldon:
